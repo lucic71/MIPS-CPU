@@ -10,6 +10,9 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: 
+//  Output lines are chunks from instr_data as defined by ISA.
+//  Even if the operations are not conditioned by anything,
+//  they are synchronous (makes testing easier).
 // 
 // Dependencies: 
 // 

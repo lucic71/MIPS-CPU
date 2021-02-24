@@ -10,6 +10,11 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: 
+//  Contains 8 registers addressed with 3 bits. Registers have no
+//  constraints (R0 can be written). Registers are initialized to 0.
+//
+//  Read and write are synchronous (they take place on the positive
+//  edge of clock).
 // 
 // Dependencies: 
 // 
