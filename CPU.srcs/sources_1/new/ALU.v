@@ -38,12 +38,6 @@ module ALU(
     reg [17:0] result_int;
     reg take_branch_int;
 
-    wire [15:0] left_shift_result;
-    wire [15:0] right_shift_result;
-
-    LEFT_SHIFTER ls(reg_1, reg_2[3:0], left_shift_result);
-    RIGHT_SHIFTER rs(reg_1, reg_2[3:0], right_shift_result);
-
     always @(posedge clk) begin
         if (en) begin
             case (alu_op[4:1])
@@ -106,16 +100,15 @@ module ALU(
                     take_branch_int = 1'b0;
                 end
                 `OPCODE_SHL: begin
-                    result_int[15:0] = left_shift_result;
+                    result_int[15:0] = reg_1 << reg_2;
                     take_branch_int = 1'b0;
                 end
                 `OPCODE_SHR: begin
-                    result_int[15:0] = right_shift_result;
+                    result_int[15:0] = reg_1 >> reg_2;
                     take_branch_int = 1'b0;
                 end
                 `OPCODE_JUMP: begin
-                    if (alu_op[0:0] == 1'b0)
-                        result_int[15:0] = reg_1;
+                    result_int[15:0] = reg_1;
                     take_branch_int = 1'b1;
                 end
                 `OPCODE_JUMPEQ: begin
@@ -132,7 +125,7 @@ module ALU(
                         default: take_branch_int = 1'b0;
                     endcase
                 end
-                default: result_int = {2'b00, 16'hABCD};
+                default: result_int = {2'b00, 16'hDEAD};
             endcase
 
             result = result_int[15:0];
