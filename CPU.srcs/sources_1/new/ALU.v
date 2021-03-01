@@ -90,15 +90,15 @@ module ALU(
                     end
                 end
                 `OPCODE_CMP: begin
-                    result_int[CMP_BIT_EQ:CMP_BIT_EQ] = (reg_1 == reg_2);
-                    result_int[CMP_BIT_AZ:CMP_BIT_AZ] = (reg_1 == 16'h0000);
-                    result_int[CMP_BIT_BZ:CMP_BIT_BZ] = (reg_2 == 16'h0000);
+                    result_int[`CMP_BIT_EQ:`CMP_BIT_EQ] = (reg_1 == reg_2);
+                    result_int[`CMP_BIT_AZ:`CMP_BIT_AZ] = (reg_1 == 16'h0000);
+                    result_int[`CMP_BIT_BZ:`CMP_BIT_BZ] = (reg_2 == 16'h0000);
                     if (alu_op[0:0]) begin
-                        result_int[CMP_BIT_AGB:CMP_BIT_AGB] = ($unsigned(reg_1) > $unsigned(reg_2));
-                        result_int[CMP_BIT_ALB:CMP_BIT_ALB] = ($unsigned(reg_1) < $unsigned(reg_2));
+                        result_int[`CMP_BIT_AGB:`CMP_BIT_AGB] = ($unsigned(reg_1) > $unsigned(reg_2));
+                        result_int[`CMP_BIT_ALB:`CMP_BIT_ALB] = ($unsigned(reg_1) < $unsigned(reg_2));
                     end else begin
-                        result_int[CMP_BIT_AGB:CMP_BIT_AGB] = ($signed(reg_1) > $signed(reg_2));
-                        result_int[CMP_BIT_ALB:CMP_BIT_ALB] = ($signed(reg_1) < $signed(reg_2));
+                        result_int[`CMP_BIT_AGB:`CMP_BIT_AGB] = ($signed(reg_1) > $signed(reg_2));
+                        result_int[`CMP_BIT_ALB:`CMP_BIT_ALB] = ($signed(reg_1) < $signed(reg_2));
                     end
 
                     result_int[15:15] = 1'b0;
@@ -122,13 +122,13 @@ module ALU(
                     result_int[15:0] = reg_2;
 
                     case ({alu_op[0:0], imm[1:0]})
-                        CJF_EQ: take_branch_int = reg_1[CMP_BIT_EQ:CMP_BIT_EQ];
-                        CJF_AZ: take_branch_int = reg_1[CMP_BIT_AZ:CMP_BIT_AZ];
-                        CJF_BZ: take_branch_int = reg_1[CMP_BIT_BZ:CMP_BIT_BZ];
-                        CJF_ANZ: take_branch_int = ~reg_1[CMP_BIT_AZ:CMP_BIT_AZ];
-                        CJF_BNZ: take_branch_int = ~reg_1[CMP_BIT_BZ:CMP_BIT_BZ];
-                        CJF_AGB: take_branch_int = reg_1[CMP_BIT_AGB:CMP_BIT_AGB];
-                        CJF_ALB: take_branch_int = reg_1[CMP_BIT_ALB:CMP_BIT_ALB];
+                        `CJF_EQ: take_branch_int = reg_1[`CMP_BIT_EQ:`CMP_BIT_EQ];
+                        `CJF_AZ: take_branch_int = reg_1[`CMP_BIT_AZ:`CMP_BIT_AZ];
+                        `CJF_BZ: take_branch_int = reg_1[`CMP_BIT_BZ:`CMP_BIT_BZ];
+                        `CJF_ANZ: take_branch_int = ~reg_1[`CMP_BIT_AZ:`CMP_BIT_AZ];
+                        `CJF_BNZ: take_branch_int = ~reg_1[`CMP_BIT_BZ:`CMP_BIT_BZ];
+                        `CJF_AGB: take_branch_int = reg_1[`CMP_BIT_AGB:`CMP_BIT_AGB];
+                        `CJF_ALB: take_branch_int = reg_1[`CMP_BIT_ALB:`CMP_BIT_ALB];
                         default: take_branch_int = 1'b0;
                     endcase
                 end
