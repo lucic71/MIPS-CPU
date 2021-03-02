@@ -10,11 +10,18 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: 
+//  validate_result - stops simulation if actual result is different from
+//      expected result
+//  validate_take_branch - stops simulation if actual take_branch is different from
+//      expected take_branch
+//
+//  On posedge values are changed to test the respective operations.
+//  On negedge validate tasks are run to check the results.
 // 
 // Dependencies: 
 // 
 // Revision:
-// Revision 0.01 - File Created
+// Revision 0.02 - Created tests for each ALU operation
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////

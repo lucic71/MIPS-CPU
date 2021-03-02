@@ -10,11 +10,30 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: 
+//  ALU has two internal registers:
+//      - [17:0] result_int: solves overflow/carry problems
+//      - take_branch_int: saves take_branch output 
+//
+//  ALU implements the following operations:
+//      - ADD (signed and unsigned)
+//      - SUB (singed and unsigned)
+//      - OR
+//      - XOR
+//      - AND
+//      - NOT
+//      - READ from memory
+//      - WRITE to memory, address must be 8-bit aligned
+//      - LOAD immediate into register
+//      - CMP and write result in register
+//      - SHL
+//      - SHR
+//      - JUMP to register
+//      - JUMPEQ jump based on previous CMP
 // 
 // Dependencies: 
 // 
 // Revision:
-// Revision 0.01 - File Created
+// Revision 0.02 - Implemented and documented ALU operations
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
