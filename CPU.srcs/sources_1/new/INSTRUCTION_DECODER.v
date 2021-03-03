@@ -36,17 +36,17 @@ module INSTRUCTION_DECODER(
 
     always @(posedge clk) begin
         if (en) begin
-            reg_sel_1 <= instr_data[7:5];
-            reg_sel_2 <= instr_data[4:2];
-            write_reg_sel <= instr_data[11:9];
-            imm_data <= {instr_data[7:0], instr_data[7:0]};
-            alu_op <= {instr_data[15:12], instr_data[8:8]};
+            reg_sel_1 = instr_data[7:5];
+            reg_sel_2 = instr_data[4:2];
+            write_reg_sel = instr_data[11:9];
+            imm_data = {instr_data[7:0], instr_data[7:0]};
+            alu_op = {instr_data[15:12], instr_data[8:8]};
 
             case (instr_data[15:12])
-                4'b0111: reg_write <= 1'b0;
-                4'b1100: reg_write <= 1'b0;
-                4'b1101: reg_write <= 1'b0;
-                default: reg_write <= 1'b1;
+                4'b0111: reg_write = 1'b0;
+                4'b1100: reg_write = 1'b0;
+                4'b1101: reg_write = 1'b0;
+                default: reg_write = 1'b1;
             endcase
         end
     end
