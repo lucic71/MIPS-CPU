@@ -16,7 +16,7 @@
 // Dependencies: 
 // 
 // Revision:
-// Revision 0.01 - File Created
+// Revision 0.02 - Changed unblocking assignment with blocking
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
@@ -41,9 +41,9 @@ module MEMORY(
 
     always @(posedge clk) begin
         if (write_en)
-            memory[input_addr[5:0]] <= input_data;
+            memory[input_addr[5:0]] = input_data;
         else
-            output_data <= memory[input_addr[5:0]];
+            output_data = memory[input_addr[5:0]];
     end
 
 endmodule
